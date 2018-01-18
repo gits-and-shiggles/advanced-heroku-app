@@ -16,17 +16,13 @@ var _passport = require("passport");
 
 var _passport2 = _interopRequireDefault(_passport);
 
-var _AuthenticationRoutes = require("./routes/AuthenticationRoutes");
+var _OrderRoutes = require("./routes/OrderRoutes");
 
-var _AuthenticationRoutes2 = _interopRequireDefault(_AuthenticationRoutes);
+var _OrderRoutes2 = _interopRequireDefault(_OrderRoutes);
 
-var _ListRoutes = require("./routes/ListRoutes");
+var _ProductRoutes = require("./routes/ProductRoutes");
 
-var _ListRoutes2 = _interopRequireDefault(_ListRoutes);
-
-var _ArticleRoutes = require("./routes/blog/ArticleRoutes");
-
-var _ArticleRoutes2 = _interopRequireDefault(_ArticleRoutes);
+var _ProductRoutes2 = _interopRequireDefault(_ProductRoutes);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -37,21 +33,17 @@ require("dotenv").config();
 
 _mongoose2.default.set("debug", true);
 _mongoose2.default.Promise = global.Promise;
-_mongoose2.default.connect("mongodb://jwoo:jwoo@ds151451.mlab.com:51451/aca-test");
+_mongoose2.default.connect("mongodb://rhodestraveler:rhodestraveler@ds143907.mlab.com:43907/aca-final-project");
 
 var app = (0, _express2.default)();
-app.use(_express2.default.static("public"));
-
-app.get("*", function (req, res, next) {
-  res.sendFile("public/index.html");
-});
 app.use(_bodyParser2.default.json());
-app.use(_AuthenticationRoutes2.default);
+// app.use(express.static("public"));
+app.use(_OrderRoutes2.default);
+app.use(_ProductRoutes2.default);
 
-var authStrategy = _passport2.default.authenticate("authStrategy", { session: false });
-app.use(authStrategy);
-app.use(_ListRoutes2.default);
-app.use(_ArticleRoutes2.default);
+// app.get("*", (req, res, next) => {
+//   res.sendFile("public/index.html");
+// });
 
 app.use(function (err, req, res, next) {
   console.error(err.stack);
