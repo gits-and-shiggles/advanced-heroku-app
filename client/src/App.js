@@ -27,7 +27,7 @@ class App extends Component {
           <Switch>
             {/* <Route path={"/"} component={AppContainer} /> */}
             <Route path={"/orders"} component={ListOfOrders} />
-            <Route path={"/productinventory"} component={ListOfProductsContainer} />
+            <Route path={"/products"} component={ListOfProductsContainer} />
             <Route path={"/order"} component={OrderDetailContainer} />
             <Route path={"/placeorder"} component={OrderFormContainer} />
             <Route path={"/updateinventory"} component={UpdateInventoryContainer} />

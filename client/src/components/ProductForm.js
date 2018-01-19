@@ -19,7 +19,7 @@ class ProductForm extends Component {
         <h3>Add A New Product To Your Inventory</h3>
         <form onSubmit={(e)=>{
           e.preventDefault();
-          debugger;
+          console.log(this.state);
           this.props.createProduct(this.state.product);
         }}>
           <h4>Product Name</h4>
@@ -31,21 +31,21 @@ class ProductForm extends Component {
           }} />
           <h4>Product Description</h4>
           <input onChange={(e)=>{
-            let productDescription = {name: e.target.value};
+            let productDescription = {description: e.target.value};
             this.setState({
               product: Object.assign(this.state.product, productDescription)
             });
           }} />
           <h4>Product Price</h4>
           <input onChange={(e)=>{
-            let productPrice = {name: e.target.value};
+            let productPrice = {price: e.target.value};
             this.setState({
               product: Object.assign(this.state.product, productPrice)
             });
           }} />
           <h4>Product Quantity Available</h4>
           <input onChange={(e)=>{
-            let productQuantity = {name: e.target.value};
+            let productQuantity = {quantityAvailable: e.target.value};
             this.setState({
               product: Object.assign(this.state.product, productQuantity)
             });

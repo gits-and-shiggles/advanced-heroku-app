@@ -60,8 +60,8 @@ export function updateOrder(id){
   };
 }
 export function createProduct(product){
+  console.log(product);
   return function (dispatch){
-    debugger;
     fetch("/products", {
       method: "POST",
       headers: {"Content-Type": "application-json"},
