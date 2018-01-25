@@ -24,6 +24,7 @@ class UpdateProductForm extends Component {
         <form onSubmit={(e)=>{
           e.preventDefault();
           this.props.updateProduct(this.props.product._id, product);
+          window.location = "/product/" + this.props.product._id;
         }}>
           <h4>Product Name</h4>
           <input defaultValue={product.name} onChange={(e)=>{
@@ -69,14 +70,16 @@ class UpdateProductForm extends Component {
               }
             });
           }} />
-          <button type="submit" onClick={()=>{
-            window.location = "/product/" + this.props.product._id
-          }}>
-            Submit Product Changes
-          </button>
+          <button type="submit">Submit Product Changes</button>
           <button onClick={(e)=> {
             e.preventDefault();
-            this.props.deleteProduct(this.props.product._id);
+            const name = this.props.product.name;
+            let confirmDelete = confirm("Delete " + name + "?");
+            if(confirmDelete === true){
+              this.props.deleteProduct(this.props.product._id);
+              alert(name + " Deleted.");
+              window.location = "/products";
+            };
           }}>Delete Product</button>
         </form>
       </div>

@@ -13,11 +13,11 @@ mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://rhodestraveler:rhodestraveler@ds143907.mlab.com:43907/aca-final-project");
 
 const app = express();
-// app.use(express.static("public"));
-//
-// app.get("/", (req, res, next) => {
-//   res.sendFile("public/index.html");
-// });
+app.use(express.static("public"));
+
+app.get("/", (req, res, next) => {
+  res.sendFile("public/index.html");
+});
 app.use(bodyParser.json());
 app.use(OrderRoutes);
 app.use(ProductRoutes);

@@ -70,9 +70,7 @@ class NewProductForm extends Component {
               }
             });
           }} />
-          <button type="submit" >
-            Add Product
-          </button>
+          <button type="submit">Add Product</button>
         </form>
       </div>
     )
