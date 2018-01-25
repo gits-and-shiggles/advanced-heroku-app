@@ -17,13 +17,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function list(req, res) {
   _Product2.default.find([]).exec().then(function (products) {
+    console.log(products);
     return res.json(products);
   });
 };
 
 function show(req, res) {
   _Product2.default.findById(req.params.id).exec().then(function (product) {
-    return response.json(product);
+    return res.json(product);
   });
 }
 
@@ -34,17 +35,24 @@ function create(req, res) {
     price: req.body.price,
     quantityAvailable: req.body.quantityAvailable
   });
+  console.log(newProduct);
   newProduct.save().then(function (product) {
     return res.json(product);
   });
 }
 
 function update(req, res) {
-  _Product2.default.findByIdAndUpdate(req.params.id).exec().then(function (product) {
+  _Product2.default.findById(req.params.id).exec().then(function (product) {
+    console.log(req.body);
+    console.log(product);
     product.name = req.body.name || product.name;
     product.description = req.body.description || product.description;
     product.price = req.body.price || product.price;
     product.quantityAvailable = req.body.quantityAvailable || product.quantityAvailable;
+    console.log(product);
+    return product.save();
+  }).then(function (product) {
+    return res.json(product);
   });
 }
 
