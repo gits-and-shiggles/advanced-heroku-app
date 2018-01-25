@@ -6,18 +6,17 @@ import ListOfOrders from "./components/ListOfOrders";
 import ListOfProductsContainer from "./containers/ListOfProductsContainer";
 import OrderDetailContainer from "./containers/OrderDetailContainer";
 import OrderFormContainer from "./containers/OrderFormContainer";
-import UpdateInventoryContainer from "./containers/UpdateInventoryContainer";
+import NewProductFormContainer from "./containers/NewProductFormContainer";
+import ProductDetailContainer from "./containers/ProductDetailContainer";
+import UpdateProductFormContainer from "./containers/UpdateProductFormContainer";
+
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-    };
+
+  componentDidMount(){
+    this.props.loadOrders();
+    this.props.loadProducts();
   }
-  // componentDidMount(){
-  //   this.props.loadOrders();
-  //   this.props.loadProducts();
-  // }
 
   render() {
     return (
@@ -25,12 +24,13 @@ class App extends Component {
         <div>
           <Header />
           <Switch>
-            {/* <Route path={"/"} component={AppContainer} /> */}
+            <Route path={"/newproduct"} component={NewProductFormContainer} />
             <Route path={"/orders"} component={ListOfOrders} />
             <Route path={"/products"} component={ListOfProductsContainer} />
+            <Route path={"/product/:id"} component={ProductDetailContainer} />
             <Route path={"/order"} component={OrderDetailContainer} />
             <Route path={"/placeorder"} component={OrderFormContainer} />
-            <Route path={"/updateinventory"} component={UpdateInventoryContainer} />
+            <Route path={"/updateproduct/:id"} component={UpdateProductFormContainer} />
           </Switch>
         </div>
       </BrowserRouter>

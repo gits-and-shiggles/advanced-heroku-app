@@ -1,6 +1,6 @@
 // dotenv allows us to declare environment variables in a .env file, \
 // find out more here https://github.com/motdotla/dotenv
-// require("dotenv").config();
+require("dotenv").config();
 import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
@@ -21,6 +21,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(OrderRoutes);
 app.use(ProductRoutes);
+
 
 
 // const authStrategy = passport.authenticate("authStrategy", { session: false });

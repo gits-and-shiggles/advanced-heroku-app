@@ -2,7 +2,7 @@ export function createOrder(order){
   return function (dispatch){
     fetch("/orders", {
       method: "POST",
-      headers: {"Content-Type": "application-json"},
+      headers: {"Content-Type": "application/json"},
       body: JSON.stringify(order)
     }).then(()=> dispatch(loadOrders()));
   };
@@ -64,7 +64,7 @@ export function createProduct(product){
   return function (dispatch){
     fetch("/products", {
       method: "POST",
-      headers: {"Content-Type": "application-json"},
+      headers: {"Content-Type": "application/json"},
       body: JSON.stringify(product)
     }).then(()=> dispatch(loadProducts()));
   };
@@ -112,11 +112,12 @@ export function deleteProduct(id){
     .then(()=> dispatch(loadProducts()));
   }
 }
-export function updateProducts(){
+export function updateProduct(id, body){
   return function (dispatch){
-    fetch("/products", {
+    fetch(`/products/${id}`, {
       method: "PUT",
-      headers: {"Content-Type": "application/json"}
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(body)
     })
     .then(()=> dispatch(loadProducts()));
   };

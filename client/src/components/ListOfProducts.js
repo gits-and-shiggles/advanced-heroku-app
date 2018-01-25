@@ -1,18 +1,24 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import ProductFormContainer from "../containers/ProductFormContainer";
+import NewProductFormContainer from "../containers/NewProductFormContainer";
+import PropTypes from "prop-types";
 
 class ListOfProducts extends React.Component {
   constructor(props){
     super();
     this.state = {
       productForm: ""
-    }
+    };
+    this.hideForm = this.hideForm.bind(this);
   }
-  componentDidMount(props){
-    this.props.loadProducts(this.props.products);
+  hideForm(){
+    return(
+      this.setState({
+        productForm: ""
+      })
+    )
+  }
 
-  }
 
   render(){
     let productList = this.props.products.map((p,i)=>{
@@ -21,18 +27,19 @@ class ListOfProducts extends React.Component {
           <h4>{p.name}</h4>
           <p>Quantity Available: {p.quantityAvailable}</p>
           <button>
-            <Link to={"products/"+p.id}>View/Edit</Link>
+            <Link to={"/product/"+p._id}>View/Edit</Link>
           </button>
         </li>
       )
     });
+
     return (
       <div>
         <h3>Inventory of products</h3>
         <button onClick={(e)=>{
           e.preventDefault();
           this.setState({
-            productForm: <ProductFormContainer />
+            productForm: <NewProductFormContainer hideForm={this.hideForm} />
           });
         }}>
           Add New Product
@@ -47,3 +54,7 @@ class ListOfProducts extends React.Component {
 }
 
 export default ListOfProducts;
+
+ListOfProducts.PropTypes = {
+  products: PropTypes.array.isRequired
+}

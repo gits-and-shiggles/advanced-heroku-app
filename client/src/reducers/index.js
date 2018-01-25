@@ -13,7 +13,7 @@ function order(state = [], action){
   return state;
 }
 function products(state = [], action){
-  if(action.type === "INVENTORY_LOADED") {
+  if(action.type === "PRODUCTS_LOADED") {
     return action.value;
   }
   return state;
