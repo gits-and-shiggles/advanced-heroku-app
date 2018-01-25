@@ -37,13 +37,13 @@ _mongoose2.default.connect("mongodb://rhodestraveler:rhodestraveler@ds143907.mla
 
 var app = (0, _express2.default)();
 app.use(_bodyParser2.default.json());
-// app.use(express.static("public"));
+app.use(express.static("public"));
 app.use(_OrderRoutes2.default);
 app.use(_ProductRoutes2.default);
 
-// app.get("*", (req, res, next) => {
-//   res.sendFile("public/index.html");
-// });
+app.get("*", (req, res, next) => {
+  res.sendFile("public/index.html");
+});
 
 app.use(function (err, req, res, next) {
   console.error(err.stack);
